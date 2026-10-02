@@ -24,11 +24,9 @@ const TRANSLATIONS = {
     "cat.Accessories": "Accessories",
     "cat.Wishlist": "Saved",
     "hero.title": "Power your day.<br>Pay from your phone.",
-    "hero.sub": "Phones, laptops, TVs and accessories in Kampala & beyond — checkout with an M-PESA prompt straight to your handset, no card required.",
+    "hero.sub": "Phones, laptops, TVs and accessories in Nairobi & beyond — checkout with an M-PESA prompt straight to your handset, no card required.",
     "hero.cta": "Browse the catalog",
-    "hero.trust1": "Instant M-PESA STK push",
     "hero.trust2": "Genuine warranty on every item",
-    "footer.text": "VoltEdge Electronics — built as a course project. Payments run through Safaricom's M-PESA Daraja sandbox.",
     "cart.title": "Your cart",
     "cart.total": "Total",
     "cart.checkout": "Checkout",
@@ -82,11 +80,9 @@ const TRANSLATIONS = {
     "cat.Accessories": "Vifaa",
     "cat.Wishlist": "Vipendwa",
     "hero.title": "Washa siku yako.<br>Lipa kutoka simu yako.",
-    "hero.sub": "Simu, laptop, televisheni na vifaa Kampala na maeneo mengine — lipa kwa ombi la M-PESA moja kwa moja kwenye simu yako, hakuna kadi inayohitajika.",
+    "hero.sub": "Simu, laptop, televisheni na vifaa Nairobi na maeneo mengine — lipa kwa ombi la M-PESA moja kwa moja kwenye simu yako, hakuna kadi inayohitajika.",
     "hero.cta": "Angalia bidhaa",
-    "hero.trust1": "Ombi la M-PESA la papo hapo",
     "hero.trust2": "Udhamini halisi kwa kila bidhaa",
-    "footer.text": "VoltEdge Electronics — imejengwa kama mradi wa masomo. Malipo yanapitia mazingira ya majaribio ya Daraja ya M-PESA ya Safaricom.",
     "cart.title": "Kikapu chako",
     "cart.total": "Jumla",
     "cart.checkout": "Lipa",
@@ -174,7 +170,7 @@ function setLanguage(lang) {
   renderRecentlyViewed();
 }
 
-const money = (n) => "UGX " + Number(n).toLocaleString("en-UG");
+const money = (n) => "KES " + Number(n).toLocaleString("en-KE");
 
 // Deterministic mock stock level per product id, stable across renders.
 function stockFor(id) {

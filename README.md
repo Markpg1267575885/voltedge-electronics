@@ -37,23 +37,55 @@ npm install
    `.env.example` are Safaricom's published sandbox test values — they work
    for every developer in the sandbox, no need to change them.
 
-## 3. Expose a callback URL
+## 3. Expose a public HTTPS callback URL
 
-Safaricom needs a public HTTPS URL to POST the payment result to. On your own
-machine, run:
+Safaricom needs a public HTTPS URL to POST the payment result to — your own
+phone or laptop isn't reachable from the internet by default. There are two
+ways to get one; **Option A is recommended** because it also means the site
+itself works from any device, browser, or network — not just whichever
+machine happens to be running it.
+
+### Option A — deploy it for real (works everywhere, no phone needed)
+
+[Render](https://render.com) has a genuine free tier: no credit card, git-push
+deploys, automatic HTTPS.
+
+1. Push this project to a GitHub repo (create one at github.com/new, then
+   from inside the `voltedge` folder: `git init && git add . && git commit -m
+   "voltedge" && git remote add origin <your-repo-url> && git push -u origin
+   main`).
+2. At https://render.com → **New → Web Service** → connect that repo.
+3. Settings: **Runtime** Node, **Build Command** `npm install`, **Start
+   Command** `npm start`, **Plan** Free.
+4. Under **Environment**, add the variables from `.env.example`
+   (`MPESA_CONSUMER_KEY`, `MPESA_CONSUMER_SECRET`, `MPESA_SHORTCODE`,
+   `MPESA_PASSKEY`, `MPESA_ENV`) — leave `MPESA_CALLBACK_URL` for last.
+5. Deploy. Render gives you a URL like `https://voltedge-xxxx.onrender.com`.
+   Add one more environment variable:
+   `MPESA_CALLBACK_URL=https://voltedge-xxxx.onrender.com/api/mpesa/callback`,
+   then redeploy (Render does this automatically when env vars change).
+
+Now the storefront and the M-PESA callback both work from that URL, from any
+phone, laptop, or browser — nothing needs to stay running locally. (Render's
+free tier sleeps after 15 minutes idle and takes ~1 minute to wake back up on
+the next visit — normal for a free demo, not a bug.)
+
+### Option B — run it locally in Termux with a tunnel
+
+If you just want to test on-device without deploying anywhere:
 
 ```
-ngrok http 4000
+pkg install wget
+wget <the arm64 .tgz link from https://ngrok.com/download>
+tar -xzf ngrok-*.tgz
+./ngrok authtoken YOUR_TOKEN        # free account at ngrok.com
+termux-chroot ./ngrok http 4000     # termux-chroot is required — ngrok can't
+                                     # resolve DNS in plain Termux without it
 ```
 
-and paste the `https://…ngrok-free.app` URL it prints into `.env` as:
-
-```
-MPESA_CALLBACK_URL=https://xxxx.ngrok-free.app/api/mpesa/callback
-```
-
-(If you deploy the app to a real host — Render, Railway, a VPS — use that
-host's own HTTPS URL instead and skip ngrok.)
+Paste the `https://xxxx.ngrok-free.app` URL it prints into `.env` as
+`MPESA_CALLBACK_URL=.../api/mpesa/callback`. This only works while Termux and
+the tunnel are both open on that phone.
 
 ## 4. Run it
 
@@ -61,7 +93,7 @@ host's own HTTPS URL instead and skip ngrok.)
 npm start
 ```
 
-Visit **http://localhost:4000**.
+Locally: visit **http://localhost:4000**. On Render: visit the URL it gave you.
 
 ## 5. Test a payment
 
@@ -93,5 +125,7 @@ public/                  Storefront (HTML/CSS/JS)
   **Go-Live** application and issue a production shortcode — set
   `MPESA_ENV=production` and swap in the production credentials/shortcode
   when that happens.
-- Prices in `data/products.json` are in UGX; adjust currency formatting in
-  `public/js/app.js` (`money()`) if a different market is needed.
+- Prices in `data/products.json` are in KES (Kenyan Shillings), matching the
+  currency Safaricom's Daraja API actually transacts in. Adjust the numbers
+  there, and the formatting in `public/js/app.js` (`money()`), if a different
+  market/currency is needed.

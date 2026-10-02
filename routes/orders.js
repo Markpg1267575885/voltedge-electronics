@@ -48,6 +48,16 @@ router.post("/", async (req, res) => {
       description: "VoltEdge order",
     });
 
+    // Safaricom can return HTTP 200 with a non-zero ResponseCode (e.g. bad
+    // shortcode/passkey, amount rejected) — that's still a failure to us.
+    if (String(stkResponse.ResponseCode) !== "0") {
+      throw new Error(
+        stkResponse.CustomerMessage ||
+          stkResponse.ResponseDescription ||
+          "M-PESA rejected the payment request"
+      );
+    }
+
     order.checkoutRequestId = stkResponse.CheckoutRequestID;
     order.merchantRequestId = stkResponse.MerchantRequestID;
     order.status = "stk_sent";
