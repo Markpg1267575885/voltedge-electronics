@@ -1,0 +1,17 @@
+{
+  "name": "voltedge-electronics",
+  "version": "1.0.0",
+  "description": "VoltEdge Electronics — full-stack e-commerce store with M-PESA (Safaricom Daraja) checkout",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "uuid": "^9.0.1"
+  }
+}

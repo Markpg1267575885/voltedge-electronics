@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VoltEdge Electronics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a href="#" class="brand">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 1L3 12h6l-1 9 10-13h-6l0-7z" fill="var(--accent)"/>
+      </svg>
+      VoltEdge
+    </a>
+    <nav class="cat-nav" id="cat-nav" aria-label="Categories">
+      <button class="cat-pill is-active" data-cat="All" data-i18n="cat.All">All</button>
+      <button class="cat-pill" data-cat="Phones" data-i18n="cat.Phones">Phones</button>
+      <button class="cat-pill" data-cat="Laptops" data-i18n="cat.Laptops">Laptops</button>
+      <button class="cat-pill" data-cat="TVs" data-i18n="cat.TVs">TVs</button>
+      <button class="cat-pill" data-cat="Audio" data-i18n="cat.Audio">Audio</button>
+      <button class="cat-pill" data-cat="Accessories" data-i18n="cat.Accessories">Accessories</button>
+      <button class="cat-pill cat-pill-wishlist" data-cat="Wishlist">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0112 6a5.5 5.5 0 019.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg>
+        <span data-i18n="cat.Wishlist">Saved</span>
+      </button>
+    </nav>
+    <label class="search-box">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" id="search-input" data-i18n-placeholder="search.placeholder" placeholder="Search products…" />
+    </label>
+    <button class="lang-btn" id="lang-toggle" aria-label="Switch language" type="button">EN</button>
+    <button class="cart-btn" id="cart-toggle" aria-label="Open cart">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 3h2l2.4 12.4a2 2 0 002 1.6h8.2a2 2 0 002-1.6L21 7H6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="9" cy="21" r="1.4" fill="currentColor"/>
+        <circle cx="18" cy="21" r="1.4" fill="currentColor"/>
+      </svg>
+      <span id="cart-count">0</span>
+    </button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <h1 data-i18n-html="hero.title">Power your day.<br>Pay from your phone.</h1>
+      <p class="hero-sub" data-i18n="hero.sub">Phones, laptops, TVs and accessories in Kampala &amp; beyond — checkout with an M-PESA prompt straight to your handset, no card required.</p>
+      <a href="#catalog" class="btn btn-primary" data-i18n="hero.cta">Browse the catalog</a>
+      <div class="hero-trust">
+        <span data-i18n="hero.trust1">Instant M-PESA STK push</span>
+        <span class="dot">&middot;</span>
+        <span data-i18n="hero.trust2">Genuine warranty on every item</span>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 360 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#2A3140" stroke-width="1.5">
+          <path d="M20 40 H140 V100 H260 V60 H340"/>
+          <path d="M20 140 H100 V220 H200 V180 H340"/>
+          <path d="M20 260 H160 V200 H340"/>
+          <path d="M180 40 V100"/>
+          <path d="M260 100 V180"/>
+        </g>
+        <g fill="#2A3140">
+          <circle cx="20" cy="40" r="4"/><circle cx="140" cy="40" r="4"/><circle cx="260" cy="60" r="4"/><circle cx="340" cy="60" r="4"/>
+          <circle cx="20" cy="140" r="4"/><circle cx="100" cy="140" r="4"/><circle cx="200" cy="180" r="4"/><circle cx="340" cy="180" r="4"/>
+          <circle cx="20" cy="260" r="4"/><circle cx="160" cy="260" r="4"/><circle cx="340" cy="200" r="4"/>
+        </g>
+        <circle id="pulse-dot" r="5" fill="#FFB020">
+          <animateMotion dur="6s" repeatCount="indefinite"
+            path="M20 40 H140 V100 H260 V60 H340" />
+        </circle>
+        <circle r="4" fill="#3DDC97">
+          <animateMotion dur="7s" repeatCount="indefinite" begin="1s"
+            path="M20 140 H100 V220 H200 V180 H340" />
+        </circle>
+        <circle r="4" fill="#5AC8FA">
+          <animateMotion dur="5s" repeatCount="indefinite" begin="2s"
+            path="M20 260 H160 V200 H340" />
+        </circle>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<main class="wrap" id="catalog">
+  <div class="catalog-head">
+    <div>
+      <h2 id="catalog-title">All products</h2>
+      <span class="catalog-count" id="catalog-count"></span>
+    </div>
+    <label class="sort-box">
+      <span data-i18n="sort.label">Sort</span>
+      <select id="sort-select">
+        <option value="featured" data-i18n="sort.featured">Featured</option>
+        <option value="price-asc" data-i18n="sort.priceAsc">Price: Low to High</option>
+        <option value="price-desc" data-i18n="sort.priceDesc">Price: High to Low</option>
+        <option value="rating" data-i18n="sort.rating">Top Rated</option>
+        <option value="name" data-i18n="sort.name">Name A–Z</option>
+      </select>
+    </label>
+  </div>
+  <div class="grid" id="product-grid"></div>
+  <p class="no-results hidden" id="no-results" data-i18n="search.noResults">No products match your search.</p>
+</main>
+
+<section class="wrap recently-viewed hidden" id="recently-viewed">
+  <h2 data-i18n="recent.heading">Recently viewed</h2>
+  <div class="grid grid-compact" id="recently-viewed-grid"></div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p data-i18n="footer.text">VoltEdge Electronics — built as a course project. Payments run through Safaricom's M-PESA Daraja sandbox.</p>
+  </div>
+</footer>
+
+<!-- Cart drawer -->
+<div class="drawer-backdrop" id="drawer-backdrop"></div>
+<aside class="cart-drawer" id="cart-drawer" aria-label="Shopping cart">
+  <div class="drawer-head">
+    <h3 data-i18n="cart.title">Your cart</h3>
+    <button class="icon-btn" id="cart-close" aria-label="Close cart">&times;</button>
+  </div>
+  <div class="cart-items" id="cart-items"></div>
+  <div class="cart-foot">
+    <div class="cart-total-row">
+      <span data-i18n="cart.total">Total</span>
+      <span id="cart-total">UGX 0</span>
+    </div>
+    <button class="btn btn-primary btn-block" id="checkout-open" disabled data-i18n="cart.checkout">Checkout</button>
+  </div>
+</aside>
+
+<!-- Checkout modal -->
+<div class="modal-backdrop" id="checkout-backdrop">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+    <button class="icon-btn modal-close" id="checkout-close" aria-label="Close">&times;</button>
+
+    <div id="checkout-form-view">
+      <h3 id="checkout-title" data-i18n="checkout.title">Pay with M-PESA</h3>
+      <p class="modal-sub" data-i18n="checkout.sub">We'll send a payment prompt to this number. Enter your PIN there to finish.</p>
+      <label class="field">
+        <span data-i18n="checkout.name">Full name</span>
+        <input type="text" id="checkout-name" placeholder="Jane Achieng" />
+      </label>
+      <label class="field">
+        <span data-i18n="checkout.phone">M-PESA phone number</span>
+        <input type="tel" id="checkout-phone" placeholder="07XXXXXXXX" />
+      </label>
+      <div class="modal-total-row">
+        <span data-i18n="checkout.amountDue">Amount due</span>
+        <span id="modal-total">UGX 0</span>
+      </div>
+      <button class="btn btn-primary btn-block" id="checkout-submit" data-i18n="checkout.submit">Send M-PESA prompt</button>
+      <p class="field-error" id="checkout-error"></p>
+    </div>
+
+    <div id="checkout-status-view" class="hidden">
+      <div class="status-spinner" id="status-spinner"></div>
+      <h3 id="status-title" data-i18n="status.checkPhone">Check your phone</h3>
+      <p class="modal-sub" id="status-sub" data-i18n="status.instructions">Enter your M-PESA PIN on the prompt sent to your phone to complete the order.</p>
+      <button class="btn btn-secondary btn-block" id="status-done" data-i18n="status.close">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Quick view modal -->
+<div class="modal-backdrop" id="quickview-backdrop">
+  <div class="modal quickview-modal" role="dialog" aria-modal="true" aria-labelledby="qv-name">
+    <button class="icon-btn modal-close" id="quickview-close" aria-label="Close">&times;</button>
+    <button class="wishlist-btn qv-wishlist-btn" id="qv-wishlist" aria-label="Save item"></button>
+    <div class="qv-icon" id="qv-icon"></div>
+    <div class="qv-cat" id="qv-cat"></div>
+    <h3 id="qv-name"></h3>
+    <div class="qv-rating" id="qv-rating"></div>
+    <p class="modal-sub" id="qv-blurb"></p>
+    <div class="qv-spec" id="qv-spec"></div>
+    <div class="qv-stock" id="qv-stock"></div>
+    <div class="modal-total-row">
+      <span data-i18n="product.price" id="qv-price-label">Price</span>
+      <span id="qv-price"></span>
+    </div>
+    <div class="qty-stepper qv-qty-stepper">
+      <button id="qv-qty-dec" type="button" aria-label="Decrease quantity">&minus;</button>
+      <span id="qv-qty">1</span>
+      <button id="qv-qty-inc" type="button" aria-label="Increase quantity">+</button>
+    </div>
+    <button class="btn btn-primary btn-block" id="qv-add" data-i18n="product.addToCart">Add to cart</button>
+  </div>
+</div>
+
+<div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
